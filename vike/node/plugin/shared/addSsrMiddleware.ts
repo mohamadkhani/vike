@@ -11,9 +11,11 @@ function addSsrMiddleware(middlewares: ConnectServer) {
     if (!url) return next()
     const { headers } = req
     const userAgent = headers['user-agent']
+    const cookie = headers['cookie']
     const pageContextInit = {
       urlOriginal: url,
-      userAgent
+      userAgent,
+      cookie
     }
     let pageContext: Awaited<ReturnType<typeof renderPage>>
     try {
